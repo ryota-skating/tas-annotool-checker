@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Annotation Report - annotator3</title>
+<style>
+body{font-family:sans-serif;margin:30px}
+.controls{margin-bottom:20px}
+.video{margin-bottom:25px;border-top:1px solid #ccc;padding-top:10px}
+.segment{padding:4px;margin:2px;white-space:pre-wrap}
+.confusable{background:#fff3cd}
+.overflow{background:#f8d7da}
+.multi{background:#d1ecf1}
+</style>
+</head>
+<body>
+<h1>Annotator: annotator3</h1>
+
+<div class="controls">
+<label><input type="checkbox" id="show_confusable" checked> ラベルミス</label>
+<label><input type="checkbox" id="show_overflow" checked> 範囲過剰</label>
+<label><input type="checkbox" id="show_multi" checked> 複数に跨ったラベル</label>
+<br><br>
+<label>余分なフレーム数の閾値:
+<input type="number" id="overflow_threshold" value="0" style="width:80px">
+</label>
+</div>
+
+<div id="report"></div>
+
+<script>
+const data={"annotator": "annotator3", "videos": [{"number": 1, "title": "Olympic_Men_SP#02_BESSEGHIER_Chafik", "confusable_label": [{"target_label": "RFO Rocker Turn", "correct_label": "LFO Rocker Turn", "target_segment": [3615, 3644], "correct_segment": [3625, 3640]}, {"target_label": "LFO Bracket Turn", "correct_label": "LFI Bracket Turn", "target_segment": [4306, 4324], "correct_segment": [4305, 4324]}], "long_segment_overflow": [{"label": "Hop", "target_segment": [1462, 1584], "correct_segment": [1567, 1583], "extra_frames": 106}, {"label": "Ambiguous Skating Movement", "target_segment": [2016, 2125], "correct_segment": [1962, 2020], "extra_frames": 51}], "long_segment_multi_label": [{"label": "Ambiguous Turn", "target_segment": [3694, 3719], "contained_correct_segments": [{"label": "Twizzle", "range": [3694, 3709]}, {"label": "Cross Backward", "range": [3716, 3717]}]}]}, {"number": 2, "title": "Olympic_Men_SP#03_ZHOU_Vincent", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [259, 274], "correct_segment": [260, 315]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [289, 327], "correct_segment": [260, 315]}, {"target_label": "LFI Counter Turn", "correct_label": "LFO Counter Turn", "target_segment": [3223, 3254], "correct_segment": [3233, 3247]}], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "LFI Counter Turn", "target_segment": [3223, 3254], "contained_correct_segments": [{"label": "LFO Counter Turn", "range": [3233, 3247]}, {"label": "Cross Backward", "range": [3250, 3258]}]}, {"label": "Hop", "target_segment": [3356, 3427], "contained_correct_segments": [{"label": "Hop", "range": [3361, 3383]}, {"label": "Hop", "range": [3393, 3413]}, {"label": "Lunge", "range": [3420, 3434]}]}, {"label": "Cross Backward", "target_segment": [3613, 3646], "contained_correct_segments": [{"label": "RFO Rocker Turn", "range": [3597, 3618]}, {"label": "Cross Backward", "range": [3636, 3640]}]}]}, {"number": 3, "title": "Olympic_Men_SP#04_TEN_Denis", "confusable_label": [{"target_label": "RBO Three Turn", "correct_label": "RBI Three Turn", "target_segment": [1364, 1374], "correct_segment": [1365, 1377]}, {"target_label": "RFI Bracket Turn", "correct_label": "LFI Bracket Turn", "target_segment": [3625, 3639], "correct_segment": [3621, 3642]}], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Cross Backward", "target_segment": [3653, 3671], "contained_correct_segments": [{"label": "Cross Backward", "range": [3651, 3663]}, {"label": "RBI Three Turn", "range": [3666, 3677]}]}]}, {"number": 4, "title": "Olympic_Men_SP#05_RIZZO_Matteo", "confusable_label": [{"target_label": "RBI Three Turn", "correct_label": "RBO Three Turn", "target_segment": [1398, 1406], "correct_segment": [1396, 1404]}, {"target_label": "RFI Three Turn", "correct_label": "RFO Three Turn", "target_segment": [4358, 4377], "correct_segment": [4357, 4374]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 5, "title": "Olympic_Men_SP#06_MARTINEZ_Michael Christian", "confusable_label": [{"target_label": "LBO Three Turn", "correct_label": "RBO Three Turn", "target_segment": [2490, 2502], "correct_segment": [2492, 2501]}], "long_segment_overflow": [{"label": "Toe Step", "target_segment": [2763, 2816], "correct_segment": [2793, 2814], "extra_frames": 32}], "long_segment_multi_label": []}, {"number": 6, "title": "Olympic_Men_SP#07_PANIOT_Yaroslav", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2040, 2063], "correct_segment": [2050, 2129]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 8, "title": "Olympic_Men_SP#09_YEE_Julian Zhi Jie", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2153, 2173], "correct_segment": [2153, 2210]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2188, 2216], "correct_segment": [2153, 2210]}, {"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [3374, 3404], "correct_segment": [3367, 3385]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 9, "title": "Olympic_Men_SP#10_KERRY_Brendan", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [470, 489], "correct_segment": [479, 557]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2743, 2756], "correct_segment": [2746, 2793]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2774, 2795], "correct_segment": [2746, 2793]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 10, "title": "Olympic_Men_SP#11_KVITELASHVILI_Morisi", "confusable_label": [], "long_segment_overflow": [{"label": "Cross Backward", "target_segment": [613, 674], "correct_segment": [623, 643], "extra_frames": 41}], "long_segment_multi_label": []}, {"number": 11, "title": "Olympic_Men_SP#12_MESSING_Keegan", "confusable_label": [{"target_label": "RBI Three Turn", "correct_label": "RBO Three Turn", "target_segment": [1143, 1153], "correct_segment": [1140, 1155]}, {"target_label": "LBI Three Turn", "correct_label": "RBI Three Turn", "target_segment": [1337, 1350], "correct_segment": [1335, 1348]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2189, 2267], "correct_segment": [2192, 2266]}, {"target_label": "LFO Rocker Turn", "correct_label": "RFO Rocker Turn", "target_segment": [3333, 3345], "correct_segment": [3331, 3347]}], "long_segment_overflow": [{"label": "Hop", "target_segment": [1516, 1597], "correct_segment": [1581, 1596], "extra_frames": 66}], "long_segment_multi_label": []}, {"number": 12, "title": "Olympic_Men_SP#13_BREZINA_Michal", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [211, 227], "correct_segment": [208, 253]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [241, 258], "correct_segment": [208, 253]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [882, 892], "correct_segment": [879, 923]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [910, 927], "correct_segment": [879, 923]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 13, "title": "Olympic_Men_SP#14_CHA_Junhwan", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [3468, 3477], "correct_segment": [3460, 3504]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [3490, 3510], "correct_segment": [3460, 3504]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 15, "title": "Olympic_Men_SP#16_GE_Misha", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2627, 2642], "correct_segment": [2630, 2704]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2688, 2709], "correct_segment": [2630, 2704]}], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Choctaw", "target_segment": [1499, 1527], "contained_correct_segments": [{"label": "Choctaw", "range": [1497, 1511]}, {"label": "Mohawk", "range": [1517, 1526]}]}]}, {"number": 16, "title": "Olympic_Men_SP#17_HENDRICKX_Jorik", "confusable_label": [], "long_segment_overflow": [{"label": "Toe Step", "target_segment": [3964, 4007], "correct_segment": [3981, 3990], "extra_frames": 34}], "long_segment_multi_label": [{"label": "LFO Rocker Turn", "target_segment": [242, 276], "contained_correct_segments": [{"label": "LFO Rocker Turn", "range": [252, 269]}, {"label": "Cross Backward", "range": [272, 288]}]}, {"label": "Ina Bauers", "target_segment": [1282, 1331], "contained_correct_segments": [{"label": "Spread Eagles", "range": [1288, 1309]}, {"label": "Ina Bauers", "range": [1316, 1327]}]}, {"label": "Choctaw", "target_segment": [2418, 2442], "contained_correct_segments": [{"label": "Choctaw", "range": [2419, 2430]}, {"label": "Mohawk", "range": [2434, 2439]}]}]}, {"number": 17, "title": "Olympic_Men_SP#18_SAMOHIN_Daniel", "confusable_label": [{"target_label": "RFI Three Turn", "correct_label": "LFO Three Turn", "target_segment": [594, 613], "correct_segment": [593, 613]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [984, 1002], "correct_segment": [990, 1040]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [1025, 1043], "correct_segment": [990, 1040]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 18, "title": "Olympic_Men_SP#19_RIPPON_Adam", "confusable_label": [{"target_label": "LBO Three Turn", "correct_label": "RBO Three Turn", "target_segment": [847, 858], "correct_segment": [841, 857]}, {"target_label": "RFI Three Turn", "correct_label": "LFI Three Turn", "target_segment": [1805, 1812], "correct_segment": [1805, 1812]}, {"target_label": "LBO Three Turn", "correct_label": "RBO Three Turn", "target_segment": [4317, 4328], "correct_segment": [4315, 4325]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 19, "title": "Olympic_Men_SP#20_ALIEV_Dmitri", "confusable_label": [], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Choctaw", "target_segment": [1054, 1073], "contained_correct_segments": [{"label": "Choctaw", "range": [1055, 1063]}, {"label": "Mohawk", "range": [1065, 1069]}]}]}, {"number": 20, "title": "Olympic_Men_SP#21_CHAN_Patrick", "confusable_label": [{"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [1160, 1228], "correct_segment": [1158, 1182]}, {"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [1160, 1228], "correct_segment": [1198, 1222]}, {"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [2842, 2901], "correct_segment": [2844, 2866]}, {"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [2842, 2901], "correct_segment": [2883, 2893]}, {"target_label": "LBO Rocker Turn", "correct_label": "LBO Counter Turn", "target_segment": [3025, 3036], "correct_segment": [3022, 3035]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 21, "title": "Olympic_Men_SP#22_TANAKA_Keiji", "confusable_label": [{"target_label": "Cross Forward", "correct_label": "Crossover Forward", "target_segment": [1250, 1299], "correct_segment": [1249, 1290]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2856, 2875], "correct_segment": [2853, 2940]}], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Choctaw", "target_segment": [3827, 3857], "contained_correct_segments": [{"label": "Choctaw", "range": [3833, 3843]}, {"label": "Mohawk", "range": [3847, 3851]}]}]}, {"number": 22, "title": "Olympic_Men_SP#23_BYCHENKO_Alexei", "confusable_label": [{"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [330, 441], "correct_segment": [325, 344]}, {"target_label": "LBO Three Turn", "correct_label": "RBO Three Turn", "target_segment": [1062, 1071], "correct_segment": [1062, 1071]}, {"target_label": "LBI Rocker Turn", "correct_label": "RBI Rocker Turn", "target_segment": [4341, 4356], "correct_segment": [4340, 4354]}], "long_segment_overflow": [{"label": "Toe Step", "target_segment": [3771, 3821], "correct_segment": [3804, 3815], "extra_frames": 39}], "long_segment_multi_label": [{"label": "Crossover Forward", "target_segment": [330, 441], "contained_correct_segments": [{"label": "Cross Forward", "range": [325, 344]}, {"label": "Crossover Forward", "range": [396, 440]}]}, {"label": "Hop", "target_segment": [4003, 4026], "contained_correct_segments": [{"label": "Hop", "range": [4006, 4017]}, {"label": "Cross Backward", "range": [4019, 4028]}]}]}, {"number": 23, "title": "Olympic_Men_SP#24_VASILJEVS_Deniss", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [1104, 1116], "correct_segment": [1104, 1134]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [1123, 1138], "correct_segment": [1104, 1134]}, {"target_label": "LBO Rocker Turn", "correct_label": "LBO Counter Turn", "target_segment": [4048, 4060], "correct_segment": [4045, 4061]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 24, "title": "Olympic_Men_SP#25_HANYU_Yuzuru", "confusable_label": [{"target_label": "LBI Rocker Turn", "correct_label": "RBI Rocker Turn", "target_segment": [537, 555], "correct_segment": [541, 556]}], "long_segment_overflow": [], "long_segment_multi_label": []}]};
+
+function render(){
+ const showConf=document.getElementById("show_confusable").checked;
+ const showOverflow=document.getElementById("show_overflow").checked;
+ const showMulti=document.getElementById("show_multi").checked;
+ const threshold=parseInt(document.getElementById("overflow_threshold").value||0);
+ const container=document.getElementById("report");
+ container.innerHTML="";
+
+ data.videos.forEach(video=>{
+  const section=document.createElement("div");
+  section.className="video";
+
+  const title=document.createElement("h2");
+  title.textContent="動画 "+video.number+" ("+video.title+")";
+  section.appendChild(title);
+
+  if(showConf){
+   video.confusable_label.forEach(e=>{
+    const div=document.createElement("div");
+    div.className="segment confusable";
+    div.textContent=
+     "frame "+e.target_segment[0]+"-"+e.target_segment[1]+" : \n"
+     +"  - "+e.target_label+" は "+e.correct_label+" の可能性";
+    section.appendChild(div);
+   });
+  }
+
+  if(showOverflow){
+   video.long_segment_overflow.forEach(e=>{
+    if(e.extra_frames<threshold) return;
+    const div=document.createElement("div");
+    div.className="segment overflow";
+    div.textContent=
+     "frame "+e.target_segment[0]+"-"+e.target_segment[1]+" : \n"
+     +"  - "+e.label+" の範囲が長すぎる可能性";
+    section.appendChild(div);
+   });
+  }
+
+  if(showMulti){
+   video.long_segment_multi_label.forEach(e=>{
+    const div=document.createElement("div");
+    div.className="segment multi";
+    const ranges=e.contained_correct_segments
+      .map(x=>"    - "+x.label+" ("+x.range[0]+"-"+x.range[1]+")")
+      .join("\n");
+    div.textContent=
+      "frame "+e.target_segment[0]+"-"+e.target_segment[1]+" : \n"
+      +"  - "+e.label+" は複数のラベルに分かれる可能性：\n"+ranges;
+    section.appendChild(div);
+   });
+  }
+
+  container.appendChild(section);
+ });
+}
+
+document.querySelectorAll("input").forEach(x=>x.addEventListener("change",render));
+render();
+</script>
+</body>
+</html>

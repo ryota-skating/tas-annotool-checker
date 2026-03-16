@@ -1,0 +1,11 @@
+[project]
+name = "tas-annotool-checker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "lxml>=6.0.2",
+    "playwright>=1.58.0",
+]

@@ -1,0 +1,25 @@
+{
+  "groups": [
+    ["annotator1", "annotator2", "annotator3"],
+    ["annotator4", "annotator5", "annotator6"],
+    ["annotator7", "annotator8", "annotator9"]
+  ],
+  "confusable_groups": [
+    ["Cross Forward", "Cross Backward", "Crossover Forward", "Crossover Backward"],
+    [
+        "RFO Rocker Turn", "RFI Rocker Turn", "RBO Rocker Turn", "RBI Rocker Turn",
+        "LFO Rocker Turn", "LFI Rocker Turn", "LBO Rocker Turn", "LBI Rocker Turn",
+        "LFO Counter Turn", "LFI Counter Turn", "LBO Counter Turn", "LBI Counter Turn",
+        "LFO Counter Turn", "LFI Counter Turn", "LBO Counter Turn", "LBI Counter Turn"
+    ],
+    [
+        "RFO Three Turn", "RFI Three Turn", "RBO Three Turn", "RBI Three Turn",
+        "LFO Three Turn", "LFI Three Turn", "LBO Three Turn", "LBI Three Turn"
+    ],
+    [
+        "RFO Bracket Turn", "RFI Bracket Turn", "RBO Bracket Turn", "RBI Bracket Turn",
+        "LFO Bracket Turn", "LFI Bracket Turn", "LBO Bracket Turn", "LBI Bracket Turn"
+    ]
+  ],
+  "long_segment_threshold": 30
+}

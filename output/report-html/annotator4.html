@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Annotation Report - annotator4</title>
+<style>
+body{font-family:sans-serif;margin:30px}
+.controls{margin-bottom:20px}
+.video{margin-bottom:25px;border-top:1px solid #ccc;padding-top:10px}
+.segment{padding:4px;margin:2px;white-space:pre-wrap}
+.confusable{background:#fff3cd}
+.overflow{background:#f8d7da}
+.multi{background:#d1ecf1}
+</style>
+</head>
+<body>
+<h1>Annotator: annotator4</h1>
+
+<div class="controls">
+<label><input type="checkbox" id="show_confusable" checked> ラベルミス</label>
+<label><input type="checkbox" id="show_overflow" checked> 範囲過剰</label>
+<label><input type="checkbox" id="show_multi" checked> 複数に跨ったラベル</label>
+<br><br>
+<label>余分なフレーム数の閾値:
+<input type="number" id="overflow_threshold" value="0" style="width:80px">
+</label>
+</div>
+
+<div id="report"></div>
+
+<script>
+const data={"annotator": "annotator4", "videos": [{"number": 0, "title": "Olympic_Women_SP#16_HENDRICKX_Loena", "confusable_label": [], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "RBI Rocker Turn", "target_segment": [4333, 4358], "contained_correct_segments": [{"label": "Cross Backward", "range": [4323, 4337]}, {"label": "RBI Rocker Turn", "range": [4346, 4353]}]}]}, {"number": 1, "title": "Olympic_Women_SP#17_SCHOTT_Nicole", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [506, 536], "correct_segment": [427, 523]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 2, "title": "Olympic_Women_SP#18_RAJICOVA_Nicole", "confusable_label": [], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Twizzle", "target_segment": [4463, 4482], "contained_correct_segments": [{"label": "RFI Three Turn", "range": [4460, 4469]}, {"label": "RBO Three Turn", "range": [4474, 4480]}]}]}, {"number": 7, "title": "Olympic_Women_SP#23_TURSYNBAEVA_Elizabet", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [2065, 2091], "correct_segment": [2072, 2183]}], "long_segment_overflow": [{"label": "Ina Bauers", "target_segment": [182, 244], "correct_segment": [210, 241], "extra_frames": 31}], "long_segment_multi_label": []}, {"number": 9, "title": "Olympic_Women_SP#25_MEDVEDEVA_Evgenia", "confusable_label": [], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Twizzle", "target_segment": [2073, 2098], "contained_correct_segments": [{"label": "RFI Three Turn", "range": [2080, 2089]}, {"label": "RBO Three Turn", "range": [2091, 2096]}]}, {"label": "Hop", "target_segment": [4418, 4476], "contained_correct_segments": [{"label": "Toe Step", "range": [4408, 4445]}, {"label": "Hop", "range": [4462, 4469]}]}]}, {"number": 11, "title": "Olympic_Women_SP#27_OSMOND_Kaetlyn", "confusable_label": [{"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [405, 425], "correct_segment": [412, 480]}, {"target_label": "Cross Backward", "correct_label": "Crossover Backward", "target_segment": [439, 464], "correct_segment": [412, 480]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 12, "title": "Olympic_Women_SP#28_ZAGITOVA_Alina", "confusable_label": [], "long_segment_overflow": [{"label": "Cross Backward", "target_segment": [2984, 3029], "correct_segment": [2993, 3006], "extra_frames": 32}, {"label": "Crossover Backward", "target_segment": [3279, 3369], "correct_segment": [3281, 3287], "extra_frames": 84}], "long_segment_multi_label": []}, {"number": 16, "title": "World_Men_SP#02_Brendan_KERRY", "confusable_label": [{"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [941, 995], "correct_segment": [953, 990]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 18, "title": "World_Men_SP#04_Burak_DEMIRBOGA", "confusable_label": [{"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [971, 1017], "correct_segment": [971, 983]}, {"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [4405, 4443], "correct_segment": [4404, 4414]}], "long_segment_overflow": [{"label": "Crossover Forward", "target_segment": [971, 1017], "correct_segment": [971, 983], "extra_frames": 34}], "long_segment_multi_label": []}, {"number": 19, "title": "World_Men_SP#05_Chih-I_TSAO", "confusable_label": [{"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [2545, 2600], "correct_segment": [2550, 2595]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 20, "title": "World_Men_SP#06_Phillip_HARRIS", "confusable_label": [{"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [1103, 1176], "correct_segment": [1107, 1120]}, {"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [1103, 1176], "correct_segment": [1162, 1176]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 26, "title": "World_Men_SP#12_Kazuki_TOMONO", "confusable_label": [], "long_segment_overflow": [{"label": "LFO Counter Turn", "target_segment": [2968, 3015], "correct_segment": [2994, 3003], "extra_frames": 38}, {"label": "Lunge", "target_segment": [5033, 5165], "correct_segment": [5046, 5073], "extra_frames": 105}], "long_segment_multi_label": []}, {"number": 29, "title": "World_Men_SP#15_Donovan_CARRILLO", "confusable_label": [{"target_label": "LFO Three Turn", "correct_label": "RFO Three Turn", "target_segment": [4569, 4582], "correct_segment": [4570, 4580]}], "long_segment_overflow": [{"label": "LFO Three Turn", "target_segment": [800, 842], "correct_segment": [831, 836], "extra_frames": 37}], "long_segment_multi_label": []}, {"number": 31, "title": "World_Men_SP#17_Paul_FENTZ", "confusable_label": [{"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [2431, 2476], "correct_segment": [2437, 2475]}], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Twizzle", "target_segment": [3625, 3639], "contained_correct_segments": [{"label": "RFI Three Turn", "range": [3628, 3631]}, {"label": "RBO Three Turn", "range": [3634, 3638]}]}]}, {"number": 32, "title": "World_Men_SP#18_Stephane_WALKER", "confusable_label": [{"target_label": "LFI Three Turn", "correct_label": "LFO Three Turn", "target_segment": [3335, 3358], "correct_segment": [3345, 3351]}], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Twizzle", "target_segment": [3413, 3435], "contained_correct_segments": [{"label": "RFI Three Turn", "range": [3415, 3420]}, {"label": "RBO Three Turn", "range": [3423, 3427]}]}]}, {"number": 33, "title": "World_Men_SP#19_Ivan_PAVLOV", "confusable_label": [], "long_segment_overflow": [{"label": "Hop", "target_segment": [4501, 4558], "correct_segment": [4538, 4551], "extra_frames": 44}], "long_segment_multi_label": []}, {"number": 35, "title": "World_Men_SP#21_Michal_BREZINA", "confusable_label": [], "long_segment_overflow": [{"label": "RBO Three Turn", "target_segment": [643, 684], "correct_segment": [672, 678], "extra_frames": 35}], "long_segment_multi_label": [{"label": "Hop", "target_segment": [3972, 3992], "contained_correct_segments": [{"label": "Ambiguous Turn", "range": [3978, 3982]}, {"label": "Cross Backward", "range": [3985, 3998]}]}]}, {"number": 38, "title": "World_Men_SP#24_Alexander_MAJOROV", "confusable_label": [], "long_segment_overflow": [], "long_segment_multi_label": [{"label": "Spread Eagles", "target_segment": [2326, 2354], "contained_correct_segments": [{"label": "Choctaw", "range": [2324, 2330]}, {"label": "Spread Eagles", "range": [2338, 2350]}]}, {"label": "Choctaw", "target_segment": [3817, 3837], "contained_correct_segments": [{"label": "Mohawk", "range": [3819, 3823]}, {"label": "Choctaw", "range": [3832, 3836]}]}]}, {"number": 39, "title": "World_Men_SP#25_Nam_NGUYEN", "confusable_label": [{"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [2291, 2342], "correct_segment": [2293, 2314]}, {"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [2291, 2342], "correct_segment": [2326, 2338]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 40, "title": "World_Men_SP#26_Daniel_SAMOHIN", "confusable_label": [{"target_label": "LFO Three Turn", "correct_label": "RFO Three Turn", "target_segment": [3713, 3722], "correct_segment": [3714, 3719]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 41, "title": "World_Men_SP#27_Vincent_ZHOU", "confusable_label": [{"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [416, 479], "correct_segment": [419, 430]}, {"target_label": "Crossover Backward", "correct_label": "Cross Backward", "target_segment": [416, 479], "correct_segment": [465, 477]}], "long_segment_overflow": [], "long_segment_multi_label": []}, {"number": 42, "title": "World_Men_SP#28_Max_AARON", "confusable_label": [{"target_label": "Crossover Forward", "correct_label": "Cross Forward", "target_segment": [3475, 3535], "correct_segment": [3523, 3534]}], "long_segment_overflow": [{"label": "Crossover Forward", "target_segment": [3475, 3535], "correct_segment": [3523, 3534], "extra_frames": 49}], "long_segment_multi_label": []}]};
+
+function render(){
+ const showConf=document.getElementById("show_confusable").checked;
+ const showOverflow=document.getElementById("show_overflow").checked;
+ const showMulti=document.getElementById("show_multi").checked;
+ const threshold=parseInt(document.getElementById("overflow_threshold").value||0);
+ const container=document.getElementById("report");
+ container.innerHTML="";
+
+ data.videos.forEach(video=>{
+  const section=document.createElement("div");
+  section.className="video";
+
+  const title=document.createElement("h2");
+  title.textContent="動画 "+video.number+" ("+video.title+")";
+  section.appendChild(title);
+
+  if(showConf){
+   video.confusable_label.forEach(e=>{
+    const div=document.createElement("div");
+    div.className="segment confusable";
+    div.textContent=
+     "frame "+e.target_segment[0]+"-"+e.target_segment[1]+" : \n"
+     +"  - "+e.target_label+" は "+e.correct_label+" の可能性";
+    section.appendChild(div);
+   });
+  }
+
+  if(showOverflow){
+   video.long_segment_overflow.forEach(e=>{
+    if(e.extra_frames<threshold) return;
+    const div=document.createElement("div");
+    div.className="segment overflow";
+    div.textContent=
+     "frame "+e.target_segment[0]+"-"+e.target_segment[1]+" : \n"
+     +"  - "+e.label+" の範囲が長すぎる可能性";
+    section.appendChild(div);
+   });
+  }
+
+  if(showMulti){
+   video.long_segment_multi_label.forEach(e=>{
+    const div=document.createElement("div");
+    div.className="segment multi";
+    const ranges=e.contained_correct_segments
+      .map(x=>"    - "+x.label+" ("+x.range[0]+"-"+x.range[1]+")")
+      .join("\n");
+    div.textContent=
+      "frame "+e.target_segment[0]+"-"+e.target_segment[1]+" : \n"
+      +"  - "+e.label+" は複数のラベルに分かれる可能性：\n"+ranges;
+    section.appendChild(div);
+   });
+  }
+
+  container.appendChild(section);
+ });
+}
+
+document.querySelectorAll("input").forEach(x=>x.addEventListener("change",render));
+render();
+</script>
+</body>
+</html>
