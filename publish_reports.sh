@@ -12,7 +12,7 @@ echo ""
 
 # 1. HTMLレポート生成
 echo "[1/2] HTMLレポートを生成中..."
-python make_report.py
+uv run python make_report.py
 if [ $? -eq 0 ]; then
     echo "✓ HTMLレポート生成完了"
 else

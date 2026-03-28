@@ -12,7 +12,7 @@ echo ""
 
 # 1. クロール
 echo "[1/5] データをクロール中..."
-python crawl.py
+uv run python crawl.py
 if [ $? -eq 0 ]; then
     echo "✓ クロール完了"
 else
@@ -23,7 +23,7 @@ echo ""
 
 # 2. JSONに変換
 echo "[2/5] HTMLをJSONに変換中..."
-python html_to_json.py
+uv run python html_to_json.py
 if [ $? -eq 0 ]; then
     echo "✓ JSON変換完了"
 else
@@ -34,7 +34,7 @@ echo ""
 
 # 3. ミス検出
 echo "[3/5] ミスを検出中..."
-python detect.py
+uv run python detect.py
 if [ $? -eq 0 ]; then
     echo "✓ ミス検出完了"
 else
@@ -45,7 +45,7 @@ echo ""
 
 # 4. HTMLレポート生成
 echo "[4/5] HTMLレポートを生成中..."
-python make_report.py
+uv run python make_report.py
 if [ $? -eq 0 ]; then
     echo "✓ HTMLレポート生成完了"
 else
